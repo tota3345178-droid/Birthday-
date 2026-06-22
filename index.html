@@ -3,158 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Celebration</title>
+    <title>Birthday Celebration for Maramiroo!</title>
     <style>
-        body {
-            background-color: #fff0f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            padding: 20px;
-            color: #4a2c35;
-        }
-        .screen { display: none; }
-        .active { display: block; }
-        h1 { color: #884d5c; }
-        button {
-            background-color: #884d5c;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 18px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-        button:hover { background-color: #a86b7b; }
-        .option {
-            display: block;
-            margin: 10px auto;
-            width: 80%;
-            padding: 10px;
-            background: #ffe4e6;
-            border: 1px solid #884d5c;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .memory-img { width: 100%; max-width: 400px; border-radius: 15px; margin: 10px; }
-        #video-container { margin-top: 20px; }
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
+
+        body { background-color: #fcf8f8; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; text-align: center; color: #4a2c2a; }
+        
+        .screen { display: none; height: 100vh; flex-direction: column; justify-content: center; align-items: center; }
+        .active { display: flex; }
+        
+        .welcome-sub { font-family: 'Playfair Display', serif; font-size: 14px; letter-spacing: 3px; color: #a64b63; text-transform: uppercase; }
+        .welcome-title { font-family: 'Playfair Display', serif; font-size: 32px; margin: 10px 0; }
+        .btn { background: #5d2a2a; color: white; padding: 15px 40px; border-radius: 50px; cursor: pointer; margin-top: 20px; border: none; font-size: 16px; }
+        
+        .choice { display: block; background: white; border: 1px solid #dcc; padding: 15px; margin: 10px auto; width: 80%; max-width: 300px; border-radius: 10px; cursor: pointer; }
+        .img-container { width: 90%; max-width: 400px; margin: 10px; }
     </style>
 </head>
 <body>
 
-    <!-- صفحة البداية -->
-    <div id="screen1" class="screen active">
-        <h1>A SPECIAL DAY</h1>
-        <p>Today is Maramiroo's Birthday</p>
-        <button onclick="showScreen('screen2')">ابدأ الكويز</button>
+    <!-- ١. صفحة البداية -->
+    <div id="welcome-screen" class="screen active">
+        <div class="welcome-sub">A SPECIAL DAY</div>
+        <div class="welcome-title">Today is Maramiroo's Birthday</div>
+        <button class="btn" onclick="show('quiz-screen')">ابدأ الكويز</button>
     </div>
 
-    <!-- صفحة الأسئلة -->
-    <div id="screen2" class="screen">
-        <div id="quiz-content">
-            <h2 id="question-text">سؤال 1: من الشخص الذي يحب Maramiroo؟</h2>
-            <div id="options"></div>
+    <!-- ٢. الكويز -->
+    <div id="quiz-screen" class="screen">
+        <h2>Quiz for Maramiroo</h2>
+        <p>جاوب صح عشان تعرف تعدي 😉</p>
+        
+        <!-- السؤال الأول -->
+        <div id="q1">
+            <p>السؤال الأول: بتحب إيه أكتر؟</p>
+            <div class="choice" onclick="alert('حاول تاني')">لوزه</div>
+            <div class="choice" onclick="alert('حاول تاني')">الكبده</div>
+            <div class="choice" onclick="show('q2')">هدير</div>
+        </div>
+
+        <!-- باقي الأسئلة -->
+        <div id="q2" style="display:none;">
+            <p>السؤال الثاني: (ضيفي سؤالك هنا)</p>
+            <div class="choice" onclick="show('celebration-screen')">التالي</div>
         </div>
     </div>
 
-    <!-- صفحة الاحتفال -->
-    <div id="screen3" class="screen">
+    <!-- ٣. صفحة الاحتفال -->
+    <div id="celebration-screen" class="screen">
         <h1>Let's Celebrate Maramiroo! 🎂</h1>
-        <button onclick="showScreen('screen4')">!CELEBRATE 🎉</button>
+        <button class="btn" onclick="show('memories-screen')">!CELEBRATE 🎉</button>
     </div>
 
-    <!-- صفحة الذكريات -->
-    <div id="screen4" class="screen">
-        <h1>الذكريات الجميلة</h1>
-        <img src="1002818211_2.jpg" alt="Memory" class="memory-img">
-        <p>كل سنة وأنت طيب يا Maramiroo، أتمنى لك يوماً سعيداً!</p>
-        <div id="video-container">
-            <video width="100%" max-width="400" controls>
-                <source src="birthday_video.mp4" type="video/mp4">
-                متصفحك لا يدعم الفيديو.
-            </video>
-        </div>
+    <!-- ٤. الذكريات -->
+    <div id="memories-screen" class="screen">
+        <h1>Our Beautiful Moments</h1>
+        <p style="padding: 0 20px;">هنا تكتبي الرسالة الجديدة لـ Maramiroo</p>
+        
+        <!-- هنا تحطي أسماء الصور بتاعتك -->
+        <img src="1002818207.jpg" class="img-container">
+        
+        <video width="80%" controls>
+            <source src="video.mp4" type="video/mp4">
+        </video>
     </div>
 
     <script>
-        const questions = [
-            { q: "من هو الشخص الذي يظهر في الصورة؟", a: ["هدير", "شخص آخر", "لا أعرف"], correct: 0 },
-            { q: "ما هو الشيء المفضل لـ Maramiroo؟", a: ["القهوة", "الشوكولاتة", "البيتزا"], correct: 1 },
-            { q: "هل Maramiroo يستحق أفضل احتفال؟", a: ["طبعاً!", "ربما", "لا"], correct: 0 }
-        ];
-
-        let currentQ = 0;
-
-        function showScreen(id) {
+        function show(id) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            if (id === 'screen2') loadQuestion();
-        }
-
-        function loadQuestion() {
-            if (currentQ >= questions.length) {
-                showScreen('screen3');
-                return;
-            }
-            const q = questions[currentQ];
-            document.getElementById('question-text').innerText = q.q;
-            const optDiv = document.getElementById('options');
-            optDiv.innerHTML = '';
-            q.a.forEach((text, i) => {
-                const btn = document.createElement('button');
-                btn.innerText = text;
-                btn.className = 'option';
-                btn.onclick = () => {
-                    if (i === q.correct) {
-                        currentQ++;
-                        loadQuestion();
-                    } else {
-                        alert("إجابة خاطئة، حاول مجدداً!");
-                    }
-                };
-                optDiv.appendChild(btn);
-            });
         }
     </script>
-</body>
-</html>
-
-<!-- صفحة الذكريات -->
-<div class="page" id="page4" style="display:none;">
-    <h1>Our Beautiful Moments</h1>
-    <p>مراميرو حبيب عمري، كل سنه وانت اطيب قلب في الدنيا وكل سنه وانت احسن حاجه حصلتلي ف عمري كله والسبب في كل حاجه حلوة بتحصلي يارب تفضل معايا العمر كله ونعيش سوا العمر كله واقدر اهنيك واسعدك زي مانت السبب ف كل الراحة والسعادة الي ف حياتي كل سنه وانت حبيبي وصحبي واقرب ليا من نفسي واشوفك دايما اشطر مهندس في الدنيا ومرتاح ومبسوط طول حياتك يا حياتي كلها 🥰🥰🥰</p>
-    
-    <img src="IMG-20260622-WA0022.jpg">
-    <img src="IMG-20260622-WA0017.jpg">
-    <img src="IMG-20260622-WA0012.jpg">
-    <img src="IMG-20260622-WA0006.jpg">
-    <img src="IMG-20260622-WA0014.jpg">
-    <img src="IMG-20260622-WA0013.jpg">
-</div>
-
-<script>
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-        document.getElementById(pageId).style.display = 'block';
-    }
-</script>
-
-</body>
-</html>
-    <br>
-    <video controls>
-        <source src="2026-06-22-121751298.mp4" type="video/mp4">
-    </video>
-</div>
-
-<script>
-    function checkAnswer() {
-        // ده الكود اللي بيخفي الـ Quiz ويظهر الـ Gallery لما يدوس على أي زرار
-        document.getElementById('quiz').style.display = 'none';
-        document.getElementById('gallery').style.display = 'block';
-    }
-</script>
-
 </body>
 </html>
