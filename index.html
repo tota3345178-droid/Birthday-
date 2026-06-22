@@ -6,65 +6,58 @@
     <title>Birthday Celebration for Maramiroo!</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
-
         body { background-color: #fcf8f8; font-family: 'Cairo', sans-serif; margin: 0; padding: 0; text-align: center; color: #4a2c2a; }
-        
-        .screen { display: none; height: 100vh; flex-direction: column; justify-content: center; align-items: center; }
-        .active { display: flex; }
-        
-        .welcome-sub { font-family: 'Playfair Display', serif; font-size: 14px; letter-spacing: 3px; color: #a64b63; text-transform: uppercase; }
-        .welcome-title { font-family: 'Playfair Display', serif; font-size: 32px; margin: 10px 0; }
-        .btn { background: #5d2a2a; color: white; padding: 15px 40px; border-radius: 50px; cursor: pointer; margin-top: 20px; border: none; font-size: 16px; }
-        
+        .screen { display: none; padding: 20px; }
+        .active { display: block; }
+        .btn { background: #5d2a2a; color: white; padding: 15px 40px; border-radius: 50px; cursor: pointer; margin: 10px; border: none; font-size: 16px; }
         .choice { display: block; background: white; border: 1px solid #dcc; padding: 15px; margin: 10px auto; width: 80%; max-width: 300px; border-radius: 10px; cursor: pointer; }
-        .img-container { width: 90%; max-width: 400px; margin: 10px; }
+        img { width: 100%; max-width: 400px; border-radius: 15px; margin: 10px 0; }
     </style>
 </head>
 <body>
 
-    <!-- ١. صفحة البداية -->
-    <div id="welcome-screen" class="screen active">
-        <div class="welcome-sub">A SPECIAL DAY</div>
-        <div class="welcome-title">Today is Maramiroo's Birthday</div>
-        <button class="btn" onclick="show('quiz-screen')">ابدأ الكويز</button>
+    <!-- البداية -->
+    <div id="welcome" class="screen active">
+        <h1>Today is Maramiroo's Birthday</h1>
+        <button class="btn" onclick="show('q1')">ابدأ الكويز</button>
     </div>
 
-    <!-- ٢. الكويز -->
-    <div id="quiz-screen" class="screen">
-        <h2>Quiz for Maramiroo</h2>
-        <p>جاوب صح عشان تعرف تعدي 😉</p>
-        
-        <!-- السؤال الأول -->
-        <div id="q1">
-            <p>السؤال الأول: بتحب إيه أكتر؟</p>
-            <div class="choice" onclick="alert('حاول تاني')">لوزه</div>
-            <div class="choice" onclick="alert('حاول تاني')">الكبده</div>
-            <div class="choice" onclick="show('q2')">هدير</div>
-        </div>
-
-        <!-- باقي الأسئلة -->
-        <div id="q2" style="display:none;">
-            <p>السؤال الثاني: (ضيفي سؤالك هنا)</p>
-            <div class="choice" onclick="show('celebration-screen')">التالي</div>
-        </div>
+    <!-- السؤال الأول -->
+    <div id="q1" class="screen">
+        <p>السؤال الأول: بتحب إيه أكتر؟</p>
+        <div class="choice" onclick="alert('حاول تاني')">لوزه</div>
+        <div class="choice" onclick="alert('حاول تاني')">الكبده</div>
+        <div class="choice" onclick="show('q2')">هدير</div>
     </div>
 
-    <!-- ٣. صفحة الاحتفال -->
-    <div id="celebration-screen" class="screen">
+    <!-- السؤال الثاني -->
+    <div id="q2" class="screen">
+        <p>السؤال الثاني: لو جيت في يوم قولتلك مش قادره اطبخ هتعمل ايه؟</p>
+        <div class="choice" onclick="show('q3')">هتقولي انا جعان قومي اعمليلي اي حاجه</div>
+        <div class="choice" onclick="show('q3')">هتقولي ارتاحي يا حبيبتي وانا هجيب اكل جاهز</div>
+        <div class="choice" onclick="show('q3')">هتسيبني وتروح تاكل عند طنط</div>
+    </div>
+
+    <!-- السؤال الثالث -->
+    <div id="q3" class="screen">
+        <p>السؤال الثالث: لو اخدت الفيزا بتاعتك وخلصت كل الفلوس اللي فيها؟</p>
+        <div class="choice" onclick="show('celebration')">فدايا الفلوس كلها</div>
+        <div class="choice" onclick="show('celebration')">هتقولي أن الستات كلها مسرفه</div>
+        <div class="choice" onclick="show('celebration')">هتقولي مش هداهالك تاني</div>
+    </div>
+
+    <!-- الاحتفال -->
+    <div id="celebration" class="screen">
         <h1>Let's Celebrate Maramiroo! 🎂</h1>
-        <button class="btn" onclick="show('memories-screen')">!CELEBRATE 🎉</button>
+        <button class="btn" onclick="show('memories')">!CELEBRATE 🎉</button>
     </div>
 
-    <!-- ٤. الذكريات -->
-    <div id="memories-screen" class="screen">
+    <!-- الذكريات -->
+    <div id="memories" class="screen">
         <h1>Our Beautiful Moments</h1>
-        <p style="padding: 0 20px;">هنا تكتبي الرسالة الجديدة لـ Maramiroo</p>
-        
-        <!-- هنا تحطي أسماء الصور بتاعتك -->
-        <img src="1002818207.jpg" class="img-container">
-        
-        <video width="80%" controls>
-            <source src="video.mp4" type="video/mp4">
+        <img src="IMG-20260622-WA0006.jpg" alt="Memory">
+        <video width="100%" controls>
+            <source src="2026-06-22-121751298.mp4" type="video/mp4">
         </video>
     </div>
 
