@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>عيد ميلاد Maramiroo</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; background-color: #fce4ec; padding: 20px; }
+        .container { background: white; padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        button { margin: 10px; padding: 10px 20px; cursor: pointer; }
+        #gallery { display: none; margin-top: 20px; }
+        img { width: 200px; height: 200px; margin: 10px; border-radius: 10px; }
+        video { width: 100%; max-width: 400px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="quiz">
+    <h1>سؤال لـ Maramiroo</h1>
+    <p>ما هو أكثر شيء يحبه Maramiroo؟</p>
+    <button onclick="checkAnswer()">كوره</button>
+    <button onclick="checkAnswer()">هدير</button>
+    <button onclick="checkAnswer()">قهوه</button>
+</div>
+
+<div id="gallery">
+    <h1>عيد ميلاد سعيد يا Maramiroo!</h1>
+    <p>مراميرو حبيب عمري، كل سنه وانت اطيب قلب في الدنيا وكل سنه وانت احسن حاجه حصلتلي ف عمري كله والسبب في كل حاجه حلوة بتحصلي يارب تفضل معايا العمر كله ونعيش سوا العمر كله واقدر اهنيك واسعدك زي مانت السبب ف كل الراحة والسعادة الي ف حياتي كل سنه وانت حبيبي وصحبي واقرب ليا من نفسي واشوفك دايما اشطر مهندس في الدنيا ومرتاح ومبسوط طول حياتك يا حياتي كلها 🥰🥰🥰</p>
+    
+    <img src="IMG-20260622-WA0022.jpg" alt="صورة">
+    <img src="IMG-20260622-WA0017.jpg" alt="صورة">
+    <img src="IMG-20260622-WA0012.jpg" alt="صورة">
+    <img src="IMG-20260622-WA0006.jpg" alt="صورة">
+    <img src="IMG-20260622-WA0014.jpg" alt="صورة">
+    <img src="IMG-20260622-WA0013.jpg" alt="صورة">
+
+    <br>
+    <video controls>
+        <source src="2026-06-22-121751298.mp4" type="video/mp4">
+    </video>
+</div>
+
+<script>
+    function checkAnswer() {
+        document.getElementById('quiz').style.display = 'none';
+        document.getElementById('gallery').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
