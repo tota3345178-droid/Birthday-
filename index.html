@@ -11,18 +11,17 @@
         .active { display: block; }
         .btn { background: #5d2a2a; color: white; padding: 15px 40px; border-radius: 50px; cursor: pointer; margin: 10px; border: none; font-size: 16px; }
         .choice { display: block; background: white; border: 1px solid #dcc; padding: 15px; margin: 10px auto; width: 80%; max-width: 300px; border-radius: 10px; cursor: pointer; }
-        img { width: 100%; max-width: 400px; border-radius: 15px; margin: 10px 0; }
+        img { width: 100%; max-width: 300px; border-radius: 15px; margin: 10px; }
+        .message { font-size: 18px; margin: 20px; color: #5d2a2a; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <!-- البداية -->
     <div id="welcome" class="screen active">
         <h1>Today is Maramiroo's Birthday</h1>
         <button class="btn" onclick="show('q1')">ابدأ الكويز</button>
     </div>
 
-    <!-- السؤال الأول -->
     <div id="q1" class="screen">
         <p>السؤال الأول: بتحب إيه أكتر؟</p>
         <div class="choice" onclick="alert('حاول تاني')">لوزه</div>
@@ -30,7 +29,6 @@
         <div class="choice" onclick="show('q2')">هدير</div>
     </div>
 
-    <!-- السؤال الثاني -->
     <div id="q2" class="screen">
         <p>السؤال الثاني: لو جيت في يوم قولتلك مش قادره اطبخ هتعمل ايه؟</p>
         <div class="choice" onclick="show('q3')">هتقولي انا جعان قومي اعمليلي اي حاجه</div>
@@ -38,7 +36,6 @@
         <div class="choice" onclick="show('q3')">هتسيبني وتروح تاكل عند طنط</div>
     </div>
 
-    <!-- السؤال الثالث -->
     <div id="q3" class="screen">
         <p>السؤال الثالث: لو اخدت الفيزا بتاعتك وخلصت كل الفلوس اللي فيها؟</p>
         <div class="choice" onclick="show('celebration')">فدايا الفلوس كلها</div>
@@ -46,16 +43,23 @@
         <div class="choice" onclick="show('celebration')">هتقولي مش هداهالك تاني</div>
     </div>
 
-    <!-- الاحتفال -->
     <div id="celebration" class="screen">
         <h1>Let's Celebrate Maramiroo! 🎂</h1>
         <button class="btn" onclick="show('memories')">!CELEBRATE 🎉</button>
     </div>
 
-    <!-- الذكريات -->
     <div id="memories" class="screen">
         <h1>Our Beautiful Moments</h1>
-        <img src="IMG-20260622-WA0006.jpg" alt="Memory">
+        
+        <!-- هنا الرسالة -->
+        <p class="message">مراميرو حبيب قلبي، كل سنة وأنت طيب يا أغلى الناس، ربنا يخليك ليا ونفضل مع بعض دايماً!</p>
+        
+        <!-- هنا الصور (تقدري تضيفي أي عدد) -->
+        <img src="IMG-20260622-WA0006.jpg">
+        <img src="IMG-20260622-WA0012.jpg">
+        <img src="IMG-20260622-WA0013.jpg">
+        
+        <!-- هنا الفيديو -->
         <video width="100%" controls>
             <source src="2026-06-22-121751298.mp4" type="video/mp4">
         </video>
