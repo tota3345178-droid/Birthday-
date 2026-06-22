@@ -2,38 +2,123 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>عيد ميلاد Maramiroo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Celebration</title>
     <style>
-        body { text-align: center; font-family: Arial, sans-serif; background-color: #fff5f5; padding: 20px; }
-        .page { display: none; background: white; padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 80%; max-width: 400px; }
-        #page1 { display: block; }
-        button { margin: 10px; padding: 15px 30px; cursor: pointer; display: block; width: 100%; border-radius: 10px; border: 1px solid #ddd; }
-        img { width: 100%; margin: 10px 0; border-radius: 10px; }
+        body {
+            background-color: #fff0f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 20px;
+            color: #4a2c35;
+        }
+        .screen { display: none; }
+        .active { display: block; }
+        h1 { color: #884d5c; }
+        button {
+            background-color: #884d5c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        button:hover { background-color: #a86b7b; }
+        .option {
+            display: block;
+            margin: 10px auto;
+            width: 80%;
+            padding: 10px;
+            background: #ffe4e6;
+            border: 1px solid #884d5c;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .memory-img { width: 100%; max-width: 400px; border-radius: 15px; margin: 10px; }
+        #video-container { margin-top: 20px; }
     </style>
 </head>
 <body>
 
-<!-- صفحة البداية -->
-<div class="page" id="page1">
-    <h1>A SPECIAL DAY</h1>
-    <h2>Today is Maramiroo's Birthday</h2>
-    <button onclick="showPage('page2')">ابدأ الكويز</button>
-</div>
+    <!-- صفحة البداية -->
+    <div id="screen1" class="screen active">
+        <h1>A SPECIAL DAY</h1>
+        <p>Today is Maramiroo's Birthday</p>
+        <button onclick="showScreen('screen2')">ابدأ الكويز</button>
+    </div>
 
-<!-- صفحة الأسئلة -->
-<div class="page" id="page2" style="display:none;">
-    <h3>سؤال لـ Maramiroo</h3>
-    <p>ما هو أكثر شيء يحبه Maramiroo؟</p>
-    <button onclick="showPage('page3')">كوره</button>
-    <button onclick="showPage('page3')">هدير</button>
-    <button onclick="showPage('page3')">قهوه</button>
-</div>
+    <!-- صفحة الأسئلة -->
+    <div id="screen2" class="screen">
+        <div id="quiz-content">
+            <h2 id="question-text">سؤال 1: من الشخص الذي يحب Maramiroo؟</h2>
+            <div id="options"></div>
+        </div>
+    </div>
 
-<!-- صفحة الاحتفال -->
-<div class="page" id="page3" style="display:none;">
-    <h1>Let's Celebrate Maramiroo!</h1>
-    <button onclick="showPage('page4')">!CELEBRATE</button>
-</div>
+    <!-- صفحة الاحتفال -->
+    <div id="screen3" class="screen">
+        <h1>Let's Celebrate Maramiroo! 🎂</h1>
+        <button onclick="showScreen('screen4')">!CELEBRATE 🎉</button>
+    </div>
+
+    <!-- صفحة الذكريات -->
+    <div id="screen4" class="screen">
+        <h1>الذكريات الجميلة</h1>
+        <img src="1002818211_2.jpg" alt="Memory" class="memory-img">
+        <p>كل سنة وأنت طيب يا Maramiroo، أتمنى لك يوماً سعيداً!</p>
+        <div id="video-container">
+            <video width="100%" max-width="400" controls>
+                <source src="birthday_video.mp4" type="video/mp4">
+                متصفحك لا يدعم الفيديو.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            { q: "من هو الشخص الذي يظهر في الصورة؟", a: ["هدير", "شخص آخر", "لا أعرف"], correct: 0 },
+            { q: "ما هو الشيء المفضل لـ Maramiroo؟", a: ["القهوة", "الشوكولاتة", "البيتزا"], correct: 1 },
+            { q: "هل Maramiroo يستحق أفضل احتفال؟", a: ["طبعاً!", "ربما", "لا"], correct: 0 }
+        ];
+
+        let currentQ = 0;
+
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            if (id === 'screen2') loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQ >= questions.length) {
+                showScreen('screen3');
+                return;
+            }
+            const q = questions[currentQ];
+            document.getElementById('question-text').innerText = q.q;
+            const optDiv = document.getElementById('options');
+            optDiv.innerHTML = '';
+            q.a.forEach((text, i) => {
+                const btn = document.createElement('button');
+                btn.innerText = text;
+                btn.className = 'option';
+                btn.onclick = () => {
+                    if (i === q.correct) {
+                        currentQ++;
+                        loadQuestion();
+                    } else {
+                        alert("إجابة خاطئة، حاول مجدداً!");
+                    }
+                };
+                optDiv.appendChild(btn);
+            });
+        }
+    </script>
+</body>
+</html>
 
 <!-- صفحة الذكريات -->
 <div class="page" id="page4" style="display:none;">
