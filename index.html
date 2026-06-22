@@ -7,6 +7,7 @@
         body { text-align: center; font-family: Arial, sans-serif; background-color: #fce4ec; padding: 20px; }
         .container { background: white; padding: 20px; border-radius: 15px; display: inline-block; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         button { margin: 10px; padding: 10px 20px; cursor: pointer; }
+        /* هنا السر: خليناها none عشان تختفي في البداية */
         #gallery { display: none; margin-top: 20px; }
         img { width: 200px; height: 200px; margin: 10px; border-radius: 10px; }
         video { width: 100%; max-width: 400px; margin-top: 20px; }
@@ -41,6 +42,7 @@
 
 <script>
     function checkAnswer() {
+        // ده الكود اللي بيخفي الـ Quiz ويظهر الـ Gallery لما يدوس على أي زرار
         document.getElementById('quiz').style.display = 'none';
         document.getElementById('gallery').style.display = 'block';
     }
